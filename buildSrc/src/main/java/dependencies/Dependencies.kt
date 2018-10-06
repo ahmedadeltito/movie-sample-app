@@ -3,7 +3,7 @@ package dependencies
 /**
  * Created by Ahmed Adel on 06/10/2018.
  *
- * Dependecies that will be used in build.gradle file for each module.
+ * Dependencies that will be used in build.gradle file for each module.
  */
 
 @Suppress("unused")
