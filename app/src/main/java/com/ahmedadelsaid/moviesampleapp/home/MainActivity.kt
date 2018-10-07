@@ -1,7 +1,8 @@
-package com.ahmedadelsaid.moviesampleapp
+package com.ahmedadelsaid.moviesampleapp.home
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ahmedadelsaid.moviesampleapp.R
 
 class MainActivity : AppCompatActivity() {
 

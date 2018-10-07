@@ -19,7 +19,7 @@ android {
         versionCode Versions.versionCode
         versionName Versions.versionName
 
-        buildConfigField "String", 'API_KET', API_KEY
+        buildConfigField "String", 'API_KEY', API_KEY
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -53,6 +53,10 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -60,7 +64,11 @@ dependencies {
     implementation Dependencies.AndroidXLibs
     implementation Dependencies.Google
     implementation Dependencies.Libraries
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    kapt Dependencies.DaggerCompiler
 
-    implementation Dependencies.Annotations
+    annotationProcessor Dependencies.Annotations
+
     implementation Dependencies.Testing
 }

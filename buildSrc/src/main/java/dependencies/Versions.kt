@@ -44,7 +44,7 @@ object Versions {
     object Google {
         const val playServices = "12.0.1"
         const val firebase = "12.0.1"
-        const val dagger = "2.17"
+        const val dagger = "2.16"
     }
 
     object Libraries {
