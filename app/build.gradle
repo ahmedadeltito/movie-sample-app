@@ -47,6 +47,15 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res',
+                    'src/main/res-screens/movielist'
+            ]
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -64,10 +73,8 @@ dependencies {
     implementation Dependencies.AndroidXLibs
     implementation Dependencies.Google
     implementation Dependencies.Libraries
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
-    kapt Dependencies.DaggerCompiler
 
+    kapt Dependencies.Kapt
     annotationProcessor Dependencies.Annotations
 
     implementation Dependencies.Testing

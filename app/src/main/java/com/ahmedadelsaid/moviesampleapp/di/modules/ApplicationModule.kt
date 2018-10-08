@@ -8,8 +8,8 @@ import dagger.Provides
 @Module
 class ApplicationModule(private val context: Context) {
 
-    @MovieApplicationScope
     @Provides
+    @MovieApplicationScope
     internal fun provideContext()
             = context
 }

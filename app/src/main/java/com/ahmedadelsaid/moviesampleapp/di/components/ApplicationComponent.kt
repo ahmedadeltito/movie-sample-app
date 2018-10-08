@@ -6,7 +6,6 @@ import com.ahmedadelsaid.moviesampleapp.di.modules.NetworkModule
 import com.ahmedadelsaid.moviesampleapp.di.modules.ViewModelModule
 import com.ahmedadelsaid.moviesampleapp.di.scopes.MovieApplicationScope
 import com.ahmedadelsaid.moviesampleapp.presentation.movielist.MovieListActivity
-import com.ahmedadelsaid.moviesampleapp.presentation.movielist.MovieListViewModel
 import dagger.Component
 
 @MovieApplicationScope

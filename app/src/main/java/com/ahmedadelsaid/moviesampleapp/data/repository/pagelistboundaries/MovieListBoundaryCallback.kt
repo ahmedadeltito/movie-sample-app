@@ -3,17 +3,21 @@ package com.ahmedadelsaid.moviesampleapp.data.repository.pagelistboundaries
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.annotation.NonNull
+import androidx.paging.PagedList
 import com.ahmedadelsaid.moviesampleapp.data.model.MovieEntity
 import com.ahmedadelsaid.moviesampleapp.data.repository.local.MovieDao
 import com.ahmedadelsaid.moviesampleapp.data.repository.remote.MovieAPI
+import com.ahmedadelsaid.moviesampleapp.domain.model.Movie
 import com.ahmedadelsaid.moviesampleapp.utils.safeLet
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class MovieListBoundaryCallback
 @Inject
-constructor(local: MovieDao, remote: MovieAPI)
-    : BaseBoundaryCallback(local, remote) {
+constructor(private val local: MovieDao, private val remote: MovieAPI)
+    : PagedList.BoundaryCallback<Movie>() {
+
+    private var page = 0
 
     /**
      * Called when zero items are returned from an initial load of the PagedList's data source.
@@ -30,10 +34,9 @@ constructor(local: MovieDao, remote: MovieAPI)
      *
      * @param itemAtEnd The first item of PagedList
      */
-    override fun onItemAtEndLoaded(@NonNull itemAtEnd: MovieEntity) {
+    override fun onItemAtEndLoaded(@NonNull itemAtEnd: Movie) {
         super.onItemAtEndLoaded(itemAtEnd)
-
-        nextPage()
+        page++
         loadAndSave()
     }
 
@@ -44,13 +47,10 @@ constructor(local: MovieDao, remote: MovieAPI)
                 .observeOn(Schedulers.io())
                 .subscribe(
                         { movieResponse ->
-                            safeLet(movieResponse.page, movieResponse.results) { page, moviesList ->
-                                this.page = page
-                                if (page == 1) {
-                                    moviesList.forEach { movie ->
-                                        movie?.let {
-                                            local.insertMovie(movie)
-                                        }
+                            safeLet(movieResponse.page, movieResponse.results) { _, moviesList ->
+                                moviesList.forEach { movie ->
+                                    movie?.let {
+                                        local.insertMovie(movie)
                                     }
                                 }
                             }

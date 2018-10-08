@@ -17,7 +17,6 @@ import java.util.concurrent.TimeUnit
 @Module
 class NetworkModule {
 
-    @MovieApplicationScope
     @Provides
     internal fun provideHttpClient(settings: SettingsAPI, keyInterceptor: EmbedAPIKeyInterceptor): OkHttpClient {
         val httpClient = OkHttpClient.Builder()
@@ -33,7 +32,6 @@ class NetworkModule {
         return httpClient.build()
     }
 
-    @MovieApplicationScope
     @Provides
     internal fun provideApiKeyInterceptor(settings: SettingsAPI) =
             EmbedAPIKeyInterceptor(settings)

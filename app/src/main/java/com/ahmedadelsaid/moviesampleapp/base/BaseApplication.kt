@@ -11,6 +11,7 @@ class BaseApplication : Application() {
 
     lateinit var applicationComponent: ApplicationComponent
 
+    @Suppress("DEPRECATION")
     override fun onCreate() {
         super.onCreate()
 

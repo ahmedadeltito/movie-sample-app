@@ -4,7 +4,7 @@ import com.ahmedadelsaid.moviesampleapp.data.model.MovieEntity
 import com.ahmedadelsaid.moviesampleapp.domain.model.Movie
 import javax.inject.Inject
 
-class MovieMapper @Inject constructor() {
+class MovieMapper constructor() {
     fun fromDb(from: MovieEntity) = Movie(
             from.id,
             from.overview,

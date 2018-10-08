@@ -2,10 +2,11 @@ package com.ahmedadelsaid.moviesampleapp.data.repository
 
 import androidx.paging.PagedList
 import androidx.paging.RxPagedListBuilder
-import com.ahmedadelsaid.moviesampleapp.data.model.MovieEntity
+import com.ahmedadelsaid.moviesampleapp.data.mapper.MovieMapper
 import com.ahmedadelsaid.moviesampleapp.data.repository.local.MovieDao
 import com.ahmedadelsaid.moviesampleapp.data.repository.pagelistboundaries.MovieListBoundaryCallback
 import com.ahmedadelsaid.moviesampleapp.data.repository.remote.MovieAPI
+import com.ahmedadelsaid.moviesampleapp.domain.model.Movie
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Observable
@@ -24,8 +25,10 @@ constructor(private val local: MovieDao,
             .setPageSize(20)
             .build()
 
-    fun getMovies(): Flowable<PagedList<MovieEntity>> {
-        return RxPagedListBuilder(local.getMovies, mConfig)
+    private val mapper = MovieMapper()
+
+    fun getMovies(): Flowable<PagedList<Movie>> {
+        return RxPagedListBuilder(local.getMovies.map { mapper.fromDb(it) }, mConfig)
                 .setBoundaryCallback(listCallback)
                 .buildFlowable(BackpressureStrategy.LATEST)
     }

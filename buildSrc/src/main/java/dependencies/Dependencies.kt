@@ -108,15 +108,15 @@ object Dependencies {
             "com.squareup.leakcanary:leakcanary-android:${Versions.Libraries.leakCanary}",
 
             // Glide
-            "com.github.bumptech.glide:glide:${Versions.Libraries.glide}"
+            "com.github.bumptech.glide:glide:${Versions.Libraries.glide}",
+
+            // Anko
+            "org.jetbrains.anko:anko:${Versions.Libraries.ankoVersion}"
     )
 
     val Annotations = arrayOf(
             // Android Architecture Components
             "androidx.lifecycle:lifecycle-compiler:${Versions.AndroidX.androidArc}",
-
-            // Android Arch Room
-            "androidx.room:room-compiler:${Versions.AndroidX.androidArc}",
 
             // ButterKnife
             "com.jakewharton:butterknife-compiler:${Versions.Libraries.butterknife}",
@@ -125,7 +125,10 @@ object Dependencies {
             "com.github.bumptech.glide:compiler:${Versions.Libraries.glide}"
     )
 
-    val DaggerCompiler = arrayOf(
+    val Kapt = arrayOf(
+            // Android Arch Room
+            "androidx.room:room-compiler:${Versions.AndroidX.androidArc}",
+
             // Dagger
             "com.google.dagger:dagger-compiler:${Versions.Google.dagger}"
     )

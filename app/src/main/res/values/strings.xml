@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MovieSampleApp</string>
+    <string name="retry">RETRY</string>
+    <string name="no_results">No results 😓</string>
 </resources>

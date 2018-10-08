@@ -6,7 +6,6 @@ import java.io.IOException
 import javax.inject.Inject
 
 class EmbedAPIKeyInterceptor
-@Inject
 constructor(internal var settings: SettingsAPI) : Interceptor {
 
     @Throws(IOException::class)
