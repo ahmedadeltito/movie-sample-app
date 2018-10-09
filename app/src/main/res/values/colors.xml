@@ -3,4 +3,15 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorSecondaryText">#757575</color>
+    <color name="colorIcons">#FFEBEE</color>
+    <color name="colorDivider">#FFCDD2</color>
+
+    <color name="date">#999999</color>
+    <color name="title">#222222</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="year">#999999</color>
+
 </resources>

@@ -19,7 +19,7 @@ android {
         versionCode Versions.versionCode
         versionName Versions.versionName
 
-        buildConfigField "String", 'API_KET', API_KEY
+        buildConfigField "String", 'API_KEY', API_KEY
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -47,10 +47,24 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res',
+                    'src/main/res-screens/movielist',
+                    'src/main/res-screens/moviedetails'
+            ]
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+}
+
+androidExtensions {
+    experimental = true
 }
 
 dependencies {
@@ -61,6 +75,10 @@ dependencies {
     implementation Dependencies.Google
     implementation Dependencies.Libraries
 
-    implementation Dependencies.Annotations
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    kapt Dependencies.Kapt
+    annotationProcessor Dependencies.Annotations
+
     implementation Dependencies.Testing
 }
