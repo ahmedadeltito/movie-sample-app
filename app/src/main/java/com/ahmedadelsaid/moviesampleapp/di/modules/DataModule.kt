@@ -10,6 +10,10 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Inject
 
+/**
+ * Data Module which provides movie dao, movie repository and movie use case.
+ */
+
 @Module
 class DataModule
 @Inject

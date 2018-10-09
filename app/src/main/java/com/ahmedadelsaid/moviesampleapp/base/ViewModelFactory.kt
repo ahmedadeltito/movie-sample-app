@@ -5,6 +5,10 @@ import androidx.lifecycle.ViewModelProvider
 import javax.inject.Inject
 import javax.inject.Provider
 
+/**
+ * ViewModelFactory that is used to help in building and initializing ViewModel Android Arch Component.
+ */
+
 class ViewModelFactory @Inject constructor(
         private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>)
     : ViewModelProvider.Factory {

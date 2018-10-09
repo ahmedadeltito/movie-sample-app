@@ -106,6 +106,9 @@ object Dependencies {
             // Glide
             "com.github.bumptech.glide:glide:${Versions.Libraries.glide}",
 
+            // Date Range Picker
+            "com.borax12.materialdaterangepicker:library:${Versions.Libraries.materialdaterangepicker}",
+
             // Anko
             "org.jetbrains.anko:anko:${Versions.Libraries.ankoVersion}"
     )

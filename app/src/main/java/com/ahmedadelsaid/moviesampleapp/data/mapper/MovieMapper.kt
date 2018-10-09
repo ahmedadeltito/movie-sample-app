@@ -4,28 +4,17 @@ import com.ahmedadelsaid.moviesampleapp.data.model.MovieEntity
 import com.ahmedadelsaid.moviesampleapp.domain.model.Movie
 import javax.inject.Inject
 
+/**
+ * MovieMapper is the mapper class that we will use in our presentation layer, since it's blueprint class is MovieEntity that
+ * our room makes its transactions on it.
+ */
+
 class MovieMapper {
     fun fromDb(from: MovieEntity) = Movie(
             from.id,
-            from.overview,
-            from.originalLanguage,
-            from.originalTitle,
             from.title,
             from.releaseDate,
             from.voteAverage,
-            from.popularity,
-            from.voteCount,
-            from.backdropPath
-    )
-    fun toDb(from: Movie) = MovieEntity(
-            from.id,
-            from.overview,
-            from.originalLanguage,
-            from.originalTitle,
-            from.title,
-            from.releaseDate,
-            from.voteAverage,
-            from.popularity,
             from.voteCount,
             from.backdropPath
     )

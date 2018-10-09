@@ -4,6 +4,10 @@ import androidx.room.*
 import com.ahmedadelsaid.moviesampleapp.data.model.MovieEntity
 import io.reactivex.Single
 
+/**
+ * MovieEntity Dao Interface
+ */
+
 @Dao
 interface MovieDao {
 

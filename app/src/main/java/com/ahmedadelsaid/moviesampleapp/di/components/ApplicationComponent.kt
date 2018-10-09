@@ -8,6 +8,10 @@ import com.ahmedadelsaid.moviesampleapp.di.scopes.MovieApplicationScope
 import com.ahmedadelsaid.moviesampleapp.presentation.movielist.MovieListActivity
 import dagger.Component
 
+/**
+ * Application Module for the app that contains four components : Network, Data, Application and ViewModel
+ */
+
 @MovieApplicationScope
 @Component(modules = [
     NetworkModule::class,

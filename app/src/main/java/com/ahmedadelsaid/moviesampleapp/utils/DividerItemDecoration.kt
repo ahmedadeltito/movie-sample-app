@@ -9,6 +9,10 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * DividerItemDecoration is a good thing for recycler view component.
+ */
+
 @Suppress("unused")
 class DividerItemDecoration : RecyclerView.ItemDecoration {
 
@@ -100,7 +104,7 @@ class DividerItemDecoration : RecyclerView.ItemDecoration {
         // show last divider
         if (mShowLastDivider && childCount > 0) {
             val child = parent.getChildAt(childCount - 1)
-            val params = child.getLayoutParams() as RecyclerView.LayoutParams
+            val params = child.layoutParams as RecyclerView.LayoutParams
             if (orientation == LinearLayoutManager.VERTICAL) {
                 top = child.getBottom() + params.bottomMargin
                 bottom = top + size

@@ -4,7 +4,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ahmedadelsaid.moviesampleapp.domain.model.Movie
 
-class MovieAdapter(private val moviesList: ArrayList<Movie>) : RecyclerView.Adapter<MovieViewHolder>() {
+/**
+ * MovieAdapter is the movie adapter for movie list.
+ */
+
+class MovieAdapter(private var moviesList: ArrayList<Movie>) : RecyclerView.Adapter<MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MovieViewHolder.create(parent)
 
@@ -14,14 +18,16 @@ class MovieAdapter(private val moviesList: ArrayList<Movie>) : RecyclerView.Adap
 
     override fun getItemCount() = moviesList.size
 
+    fun getMovies() = moviesList
+
     fun add(items: List<Movie>?) {
         items?.let {
-            moviesList.addAll(items)
+            moviesList.addAll(it)
             val uniqueMoviesList = moviesList.distinctBy { movie ->
                 movie.id
             }
             moviesList.clear()
-            moviesList.addAll(uniqueMoviesList )
+            moviesList.addAll(uniqueMoviesList)
             notifyDataSetChanged()
         }
     }

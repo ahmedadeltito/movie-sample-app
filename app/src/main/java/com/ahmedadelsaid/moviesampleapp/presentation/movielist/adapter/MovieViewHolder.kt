@@ -11,6 +11,10 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import kotlinx.android.synthetic.main.movie_list_item.view.*
 
+/**
+ * Movie ViewHolder is the view holder of movie list adapter.
+ */
+
 class MovieViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bindTo(movie: Movie?) {

@@ -3,6 +3,10 @@ package com.ahmedadelsaid.moviesampleapp.data.repository.remote
 import com.ahmedadelsaid.moviesampleapp.BuildConfig
 import javax.inject.Inject
 
+/**
+ * Sample class that has the Api Key, Base URL and Timeout for Retrofit.
+ */
+
 class SettingsAPI
 @Inject
 constructor() {

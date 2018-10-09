@@ -80,6 +80,9 @@ object Versions {
         // Glide for Image Handling
         const val glide = "4.8.0"
 
+        // Date Range Picker
+        const val materialdaterangepicker = "1.9"
+
         // Anko
         const val ankoVersion = "0.10.7"
 

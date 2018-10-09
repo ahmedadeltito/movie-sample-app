@@ -1,5 +1,9 @@
 package com.ahmedadelsaid.moviesampleapp.domain
 
+/**
+ * NetworkState is a good common example for handling the network response with status type.
+ */
+
 enum class Status {
     RUNNING,
     SUCCESS,

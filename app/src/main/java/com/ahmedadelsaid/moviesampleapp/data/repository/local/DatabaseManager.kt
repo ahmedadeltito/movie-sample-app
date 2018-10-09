@@ -6,6 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.ahmedadelsaid.moviesampleapp.data.model.MovieEntity
 
+/**
+ * Room Database Manager.
+ */
+
 @Database(entities = [MovieEntity::class], version = 1, exportSchema = false)
 abstract class DatabaseManager : RoomDatabase() {
 

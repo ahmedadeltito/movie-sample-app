@@ -5,6 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * EndlessRecyclerViewScrollListener is a very helpful class for handling pagination.
+ */
+
 abstract class EndlessRecyclerViewScrollListener : RecyclerView.OnScrollListener {
 
     // The minimum amount of items to have below your current scroll position

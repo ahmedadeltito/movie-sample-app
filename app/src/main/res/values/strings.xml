@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">MovieSampleApp</string>
+    <string name="app_name">Movie Sample App</string>
     <string name="retry">RETRY</string>
     <string name="no_results">No results 😓</string>
+    <string name="action_filter">Filter</string>
+    <string name="action_undo">Undo</string>
 </resources>
