@@ -8,9 +8,10 @@ import com.ahmedadelsaid.moviesampleapp.domain.model.Movie
  * MovieAdapter is the movie adapter for movie list.
  */
 
-class MovieAdapter(private var moviesList: ArrayList<Movie>) : RecyclerView.Adapter<MovieViewHolder>() {
+class MovieAdapter(private var moviesList: ArrayList<Movie>, private val itemClickedCallback: (Int?) -> Unit)
+    : RecyclerView.Adapter<MovieViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MovieViewHolder.create(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = MovieViewHolder.create(parent, itemClickedCallback)
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bindTo(moviesList[position])

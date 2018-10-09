@@ -32,32 +32,52 @@ constructor(private val local: MovieDao,
                     }
                 }
 
-        val remoteMovie = remote.getMovies(pageNumber).map { movieResponse ->
-            movieResponse.results?.map { movieEntity ->
-                if (pageNumber == 1)
-                    local.insertMovie(movieEntity)
-                mapper.fromDb(movieEntity)
-            }
-        }
+        val remoteMovie =
+                remote.getMovies(pageNumber).map { movieResponse ->
+                    movieResponse.results?.map { movieEntity ->
+                        if (pageNumber == 1)
+                            local.insertMovie(movieEntity)
+                        mapper.fromDb(movieEntity)
+                    }
+                }
 
         if (pageNumber == 1)
             return Single.concat<List<Movie>>(localMovie, remoteMovie)
         return remoteMovie.toFlowable()
     }
 
+    fun getMovie(movieId: Int): Flowable<Movie> {
+
+        val localMovie =
+                local.getMovie(movieId).map { movieEntity ->
+                    mapper.fromDb(movieEntity)
+                }.onErrorReturn {
+                    Movie()
+                }
+
+        val remoteMovie =
+                remote.getMovie(movieId).map { movieEntity ->
+                    local.insertMovie(movieEntity)
+                    mapper.fromDb(movieEntity)
+                }
+
+        return Single.concat<Movie>(localMovie, remoteMovie)
+    }
+
     fun filterMovies(pageNumber: Int, startDate: Date, endDate: Date): Flowable<List<Movie>?> {
 
-        val remoteMovie = remote.getMovies(pageNumber).map { movieResponse ->
-            movieResponse.results?.asSequence()?.map { movieEntity ->
-                mapper.fromDb(movieEntity)
-            }?.filter { movie ->
-                movie.releaseDate?.let { movieDate ->
-                    movieDate.toDate(CommonUtils.DATE_FORMATE) in startDate..endDate
-                } ?: run {
-                    false
+        val remoteMovie =
+                remote.getMovies(pageNumber).map { movieResponse ->
+                    movieResponse.results?.asSequence()?.map { movieEntity ->
+                        mapper.fromDb(movieEntity)
+                    }?.filter { movie ->
+                        movie.releaseDate?.let { movieDate ->
+                            movieDate.toDate(CommonUtils.DATE_FORMAT) in startDate..endDate
+                        } ?: run {
+                            false
+                        }
+                    }?.toList()
                 }
-            }?.toList()
-        }
 
         return remoteMovie.toFlowable()
     }

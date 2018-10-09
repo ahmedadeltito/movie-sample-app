@@ -5,6 +5,8 @@ import com.ahmedadelsaid.moviesampleapp.di.modules.DataModule
 import com.ahmedadelsaid.moviesampleapp.di.modules.NetworkModule
 import com.ahmedadelsaid.moviesampleapp.di.modules.ViewModelModule
 import com.ahmedadelsaid.moviesampleapp.di.scopes.MovieApplicationScope
+import com.ahmedadelsaid.moviesampleapp.presentation.moviedetails.MovieDetailsActivity
+import com.ahmedadelsaid.moviesampleapp.presentation.moviedetails.MovieDetailsViewModel
 import com.ahmedadelsaid.moviesampleapp.presentation.movielist.MovieListActivity
 import dagger.Component
 
@@ -22,5 +24,7 @@ import dagger.Component
 interface ApplicationComponent {
 
     fun inject(movieListActivity: MovieListActivity)
+
+    fun inject(movieDetailsActivity: MovieDetailsActivity)
 
 }

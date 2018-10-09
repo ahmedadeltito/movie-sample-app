@@ -6,7 +6,7 @@ import java.util.*
 import javax.inject.Inject
 
 /**
- * MovieListViewModel is the view model layer between use case and presentation layer.
+ * MovieListViewModel is the view model layer of movie list between use case and presentation layer.
  */
 
 class MovieListViewModel
@@ -14,7 +14,7 @@ class MovieListViewModel
 constructor(private val useCase: MovieUseCase)
     : ViewModel() {
 
-    var moviesLiveData = useCase.movieLiveData()
+    var moviesLiveData = useCase.moviesLiveData()
 
     var filterLiveData = useCase.filterLiveData()
 
@@ -27,11 +27,6 @@ constructor(private val useCase: MovieUseCase)
     override fun onCleared() {
         super.onCleared()
         cleanObservables()
-
-        val startDate = Calendar.getInstance()
-        startDate.add(Calendar.YEAR, -20)
-        val endDate = Calendar.getInstance()
-        endDate.add(Calendar.YEAR, -10)
     }
 
 }

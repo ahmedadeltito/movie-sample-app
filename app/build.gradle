@@ -51,7 +51,8 @@ android {
         main {
             res.srcDirs = [
                     'src/main/res',
-                    'src/main/res-screens/movielist'
+                    'src/main/res-screens/movielist',
+                    'src/main/res-screens/moviedetails'
             ]
         }
     }
@@ -74,6 +75,8 @@ dependencies {
     implementation Dependencies.Google
     implementation Dependencies.Libraries
 
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     kapt Dependencies.Kapt
     annotationProcessor Dependencies.Annotations
 

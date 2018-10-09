@@ -1,5 +1,6 @@
 package com.ahmedadelsaid.moviesampleapp.presentation.movielist
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -12,7 +13,9 @@ import com.ahmedadelsaid.moviesampleapp.base.BaseApplication
 import com.ahmedadelsaid.moviesampleapp.base.ViewModelFactory
 import com.ahmedadelsaid.moviesampleapp.domain.NetworkState
 import com.ahmedadelsaid.moviesampleapp.presentation.BaseActivity
+import com.ahmedadelsaid.moviesampleapp.presentation.moviedetails.MovieDetailsActivity
 import com.ahmedadelsaid.moviesampleapp.presentation.movielist.adapter.MovieAdapter
+import com.ahmedadelsaid.moviesampleapp.utils.CommonUtils
 import com.ahmedadelsaid.moviesampleapp.utils.EndlessRecyclerViewScrollListener
 import com.ahmedadelsaid.moviesampleapp.utils.date.Dates
 import com.ahmedadelsaid.moviesampleapp.utils.safeLet
@@ -23,7 +26,7 @@ import java.util.*
 import javax.inject.Inject
 
 /**
- * our launcher screen that is the entry point mostly of all the logic we have in this application.
+ * The main screen that is the entry point mostly of all the logic we have in this application.
  */
 
 class MovieListActivity : BaseActivity(),
@@ -34,8 +37,6 @@ class MovieListActivity : BaseActivity(),
 
     private lateinit var viewModel: MovieListViewModel
     private lateinit var adapter: MovieAdapter
-
-    private var networkState = NetworkState.LOADED
 
     private var isFilter = false
 
@@ -52,77 +53,20 @@ class MovieListActivity : BaseActivity(),
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MovieListViewModel::class.java)
 
-        observeMoviesList()
         initAdapter()
         initSwipeToRefresh()
+        observeMoviesList()
         fetchMovies()
 
     }
 
-    private fun fetchMovies(pageNumber: Int = 1) {
-        viewModel.fetchMovies(pageNumber)
-        isFilter = false
-        if (pageNumber == 1)
-            adapter.clear()
-    }
-
-    private fun filterMovies(startDate: Date, endDate: Date, pageNumber: Int = 1) {
-        viewModel.filterMovies(pageNumber, startDate, endDate)
-        isFilter = true
-        if (pageNumber == 1)
-            adapter.clear()
-    }
-
-    private fun observeMoviesList() {
-        viewModel.moviesLiveData.observe(this, Observer { moviesLiveData ->
-            networkState = moviesLiveData.networkState
-            movies_swipe_refresh_layout.post {
-                movies_swipe_refresh_layout.isRefreshing =
-                        moviesLiveData.networkState.status == NetworkState.LOADING.status
-            }
-            when (moviesLiveData.networkState) {
-                NetworkState.LOADED -> {
-                    adapter.add(moviesLiveData.movies)
-                    showEmptyList(moviesLiveData.movies?.isEmpty() ?: false)
-                }
-                NetworkState.LOADING -> {
-                    // Loading
-                }
-                else -> {
-                    networkState = NetworkState.error(networkState.message)
-                    showEmptyList(networkState.message != null, networkState.message)
-                }
-            }
-        })
-
-        viewModel.filterLiveData.observe(this, Observer { moviesLiveData ->
-            networkState = moviesLiveData.networkState
-            movies_swipe_refresh_layout.post {
-                movies_swipe_refresh_layout.isRefreshing =
-                        moviesLiveData.networkState.status == NetworkState.LOADING.status
-            }
-            when (moviesLiveData.networkState) {
-                NetworkState.LOADED -> {
-                    adapter.add(moviesLiveData.movies)
-                    showEmptyList(moviesLiveData.movies?.isEmpty() ?: false)
-                }
-                NetworkState.LOADING -> {
-                    // Loading
-                }
-                else -> {
-                    isFilter = false
-                    networkState = NetworkState.error(networkState.message)
-                    showEmptyList(networkState.message != null, networkState.message)
-                }
-            }
-        })
-
-    }
-
     private fun initAdapter() {
-        adapter = MovieAdapter(ArrayList())
+        adapter = MovieAdapter(ArrayList()) { movieId ->
+            startMovieDetailsActivity(movieId)
+        }
         movies_list_view.adapter = adapter
-        movies_list_view.addOnScrollListener(object : EndlessRecyclerViewScrollListener(movies_list_view.layoutManager as LinearLayoutManager) {
+        movies_list_view.addOnScrollListener(object : EndlessRecyclerViewScrollListener(movies_list_view.layoutManager
+                as LinearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int) {
                 if (isFilter) {
                     safeLet(startDate, endDate) { startDate, endDate ->
@@ -139,6 +83,60 @@ class MovieListActivity : BaseActivity(),
         movies_swipe_refresh_layout.setOnRefreshListener {
             fetchMovies()
         }
+    }
+
+    private fun observeMoviesList() {
+        viewModel.moviesLiveData.observe(this, Observer { moviesLiveData ->
+            movies_swipe_refresh_layout.post {
+                movies_swipe_refresh_layout.isRefreshing =
+                        moviesLiveData.networkState.status == NetworkState.LOADING.status
+            }
+            when (moviesLiveData.networkState) {
+                NetworkState.LOADED -> {
+                    adapter.add(moviesLiveData.movies)
+                    showEmptyList(moviesLiveData.movies?.isEmpty() ?: false)
+                }
+                NetworkState.LOADING -> {
+                    // Loading
+                }
+                else -> {
+                    showEmptyList(moviesLiveData.networkState.message != null, moviesLiveData.networkState.message)
+                }
+            }
+        })
+
+        viewModel.filterLiveData.observe(this, Observer { moviesLiveData ->
+            movies_swipe_refresh_layout.post {
+                movies_swipe_refresh_layout.isRefreshing =
+                        moviesLiveData.networkState.status == NetworkState.LOADING.status
+            }
+            when (moviesLiveData.networkState) {
+                NetworkState.LOADED -> {
+                    adapter.add(moviesLiveData.movies)
+                    showEmptyList(moviesLiveData.movies?.isEmpty() ?: false)
+                }
+                NetworkState.LOADING -> {
+                    // Loading
+                }
+                else -> {
+                    showEmptyList(moviesLiveData.networkState.message != null, moviesLiveData.networkState.message)
+                }
+            }
+        })
+    }
+
+    private fun fetchMovies(pageNumber: Int = 1) {
+        viewModel.fetchMovies(pageNumber)
+        isFilter = false
+        if (pageNumber == 1)
+            adapter.clear()
+    }
+
+    private fun filterMovies(startDate: Date, endDate: Date, pageNumber: Int = 1) {
+        viewModel.filterMovies(pageNumber, startDate, endDate)
+        isFilter = true
+        if (pageNumber == 1)
+            adapter.clear()
     }
 
     private fun showEmptyList(show: Boolean, message: String? = null) {
@@ -176,6 +174,12 @@ class MovieListActivity : BaseActivity(),
         }
         @Suppress("DEPRECATION")
         datePickerDialog?.show(fragmentManager, "DatePickerDialog")
+    }
+
+    private fun startMovieDetailsActivity(movieId: Int?) {
+        val intent = Intent(this@MovieListActivity, MovieDetailsActivity::class.java)
+        intent.putExtra(CommonUtils.MOVIE_ID_PUT_EXTRA, movieId)
+        startActivity(intent)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.ahmedadelsaid.moviesampleapp.data.repository.MoviesRepo
 import com.ahmedadelsaid.moviesampleapp.domain.NetworkState
 import com.ahmedadelsaid.moviesampleapp.domain.responseresult.MovieResponseResult
+import com.ahmedadelsaid.moviesampleapp.domain.responseresult.MoviesResponseResult
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -21,8 +22,9 @@ class MovieUseCase
 constructor(private val moviesRepo: MoviesRepo) {
 
     private var compositeDisposable: CompositeDisposable = CompositeDisposable()
+    private val moviesResponseResult: MutableLiveData<MoviesResponseResult> = MutableLiveData()
     private val movieResponseResult: MutableLiveData<MovieResponseResult> = MutableLiveData()
-    private val filterResponseResult: MutableLiveData<MovieResponseResult> = MutableLiveData()
+    private val filterResponseResult: MutableLiveData<MoviesResponseResult> = MutableLiveData()
 
     @SuppressLint("CheckResult")
     fun getMovies(pageNumber: Int) {
@@ -33,11 +35,38 @@ constructor(private val moviesRepo: MoviesRepo) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe
                 {
-                    movieResponseResult.postValue(MovieResponseResult(NetworkState.LOADING))
+                    moviesResponseResult.postValue(MoviesResponseResult(NetworkState.LOADING))
                 }
                 .subscribe(
                         { moviesList ->
                             moviesList?.let {
+                                moviesResponseResult.postValue(MoviesResponseResult(NetworkState.LOADED, it))
+                            } ?: run {
+                                moviesResponseResult.postValue(MoviesResponseResult(NetworkState.error("data is finished!")))
+                            }
+                        },
+                        { throwable ->
+                            moviesResponseResult.postValue(MoviesResponseResult(NetworkState.error(
+                                    throwable.message ?: "Something Went Wrong!")))
+                        }
+                )
+        )
+    }
+
+    @SuppressLint("CheckResult")
+    fun getMovie(movieId: Int) {
+        if (compositeDisposable.isDisposed)
+            compositeDisposable = CompositeDisposable()
+        compositeDisposable.add(moviesRepo.getMovie(movieId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe
+                {
+                    movieResponseResult.postValue(MovieResponseResult(NetworkState.LOADING))
+                }
+                .subscribe(
+                        { movie ->
+                            movie?.let {
                                 movieResponseResult.postValue(MovieResponseResult(NetworkState.LOADED, it))
                             } ?: run {
                                 movieResponseResult.postValue(MovieResponseResult(NetworkState.error("data is finished!")))
@@ -60,27 +89,29 @@ constructor(private val moviesRepo: MoviesRepo) {
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe
                 {
-                    filterResponseResult.postValue(MovieResponseResult(NetworkState.LOADING))
+                    filterResponseResult.postValue(MoviesResponseResult(NetworkState.LOADING))
                 }
                 .subscribe(
                         { moviesList ->
                             moviesList?.let {
-                                filterResponseResult.postValue(MovieResponseResult(NetworkState.LOADED, it))
+                                filterResponseResult.postValue(MoviesResponseResult(NetworkState.LOADED, it))
                             } ?: run {
-                                filterResponseResult.postValue(MovieResponseResult(NetworkState.error("data is finished!")))
+                                filterResponseResult.postValue(MoviesResponseResult(NetworkState.error("data is finished!")))
                             }
                         },
                         { throwable ->
-                            filterResponseResult.postValue(MovieResponseResult(NetworkState.error(
+                            filterResponseResult.postValue(MoviesResponseResult(NetworkState.error(
                                     throwable.message ?: "Something Went Wrong!")))
                         }
                 )
         )
     }
 
+    fun moviesLiveData(): LiveData<MoviesResponseResult> = moviesResponseResult
+
     fun movieLiveData(): LiveData<MovieResponseResult> = movieResponseResult
 
-    fun filterLiveData(): LiveData<MovieResponseResult> = filterResponseResult
+    fun filterLiveData(): LiveData<MoviesResponseResult> = filterResponseResult
 
     fun clear() {
         compositeDisposable.clear()

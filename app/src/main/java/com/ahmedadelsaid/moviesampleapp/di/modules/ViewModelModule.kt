@@ -1,8 +1,8 @@
 package com.ahmedadelsaid.moviesampleapp.di.modules
 
 import androidx.lifecycle.ViewModel
-import com.ahmedadelsaid.moviesampleapp.di.scopes.MovieApplicationScope
 import com.ahmedadelsaid.moviesampleapp.di.scopes.ViewModelKey
+import com.ahmedadelsaid.moviesampleapp.presentation.moviedetails.MovieDetailsViewModel
 import com.ahmedadelsaid.moviesampleapp.presentation.movielist.MovieListViewModel
 import dagger.Binds
 import dagger.Module
@@ -19,5 +19,10 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MovieListViewModel::class)
     abstract fun bindMovieListViewModel(viewModel: MovieListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MovieDetailsViewModel::class)
+    abstract fun bindMovieDetailsViewModel(viewModel: MovieDetailsViewModel): ViewModel
 
 }

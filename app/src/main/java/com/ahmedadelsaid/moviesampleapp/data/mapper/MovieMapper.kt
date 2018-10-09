@@ -13,9 +13,11 @@ class MovieMapper {
     fun fromDb(from: MovieEntity) = Movie(
             from.id,
             from.title,
+            from.overview,
             from.releaseDate,
             from.voteAverage,
             from.voteCount,
-            from.backdropPath
+            from.backdropPath,
+            from.popularity
     )
 }

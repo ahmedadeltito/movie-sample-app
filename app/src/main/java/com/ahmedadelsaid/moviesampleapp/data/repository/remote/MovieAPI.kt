@@ -1,5 +1,6 @@
 package com.ahmedadelsaid.moviesampleapp.data.repository.remote
 
+import com.ahmedadelsaid.moviesampleapp.data.model.MovieEntity
 import com.ahmedadelsaid.moviesampleapp.data.response.MovieResponse
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -16,6 +17,6 @@ interface MovieAPI {
     fun getMovies(@Query("page") pageNumber: Int): Single<MovieResponse>
 
     @GET("/3/movie/{id}")
-    fun getMovie(@Path("id") movieId: Int): Single<MovieResponse>
+    fun getMovie(@Path("id") movieId: Int): Single<MovieEntity>
 
 }

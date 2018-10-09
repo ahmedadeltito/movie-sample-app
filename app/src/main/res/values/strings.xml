@@ -4,4 +4,7 @@
     <string name="no_results">No results 😓</string>
     <string name="action_filter">Filter</string>
     <string name="action_undo">Undo</string>
+    <string name="release_on">Released on %s</string>
+    <string name="total_vote">Total votes %d</string>
+    <string name="welcome_to_my_movie_sample_app">Welcome To My Movie Sample App</string>
 </resources>

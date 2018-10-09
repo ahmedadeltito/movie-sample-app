@@ -4,10 +4,10 @@ import com.ahmedadelsaid.moviesampleapp.domain.NetworkState
 import com.ahmedadelsaid.moviesampleapp.domain.model.Movie
 
 /**
- * Movie Response Result is like a bridge between handling the success, error and response from data layer to presentation layer.
+ * Movies Response Result is like a bridge between handling the success, error and response from data layer to presentation layer.
  */
 
-data class MovieResponseResult(
+data class MoviesResponseResult(
         val networkState: NetworkState,
-        val movie: Movie? = null
+        val movies: List<Movie>? = null
 )
