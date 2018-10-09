@@ -11,13 +11,12 @@ constructor(private val useCase: MovieUseCase)
 
     var moviesLiveData = useCase.movieLiveData()
 
-    fun fetchMovies() = useCase.getMovies()
-
-    fun refresh() = useCase.getMovies()
+    fun fetchMovies(pageNumber: Int) = useCase.getMovies(pageNumber)
+    fun cleanObservables() = useCase.clear()
 
     override fun onCleared() {
         super.onCleared()
-        useCase.clear()
+        cleanObservables()
     }
 
 }

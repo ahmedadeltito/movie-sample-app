@@ -41,11 +41,7 @@ object Dependencies {
 
             // Android Arch Room
             "androidx.room:room-runtime:${Versions.AndroidX.androidArc}",
-            "androidx.room:room-rxjava2:${Versions.AndroidX.androidArc}",
-
-            // Android Arch Paging
-            "androidx.paging:paging-runtime:${Versions.AndroidX.androidArc}",
-            "androidx.paging:paging-rxjava2:${Versions.AndroidX.androidArc}"
+            "androidx.room:room-rxjava2:${Versions.AndroidX.androidArc}"
     )
 
     val Testing = arrayOf(
@@ -61,9 +57,6 @@ object Dependencies {
 
             // Android Arch Room
             "androidx.room:room-testing:${Versions.AndroidX.androidArc}",
-
-            // Android Arch Paging
-            "androidx.paging:paging-common:${Versions.AndroidX.androidArc}",
 
             // RxIdler
             "com.squareup.rx.idler:rx2-idler:${Versions.Libraries.rxIdler}",
@@ -101,6 +94,9 @@ object Dependencies {
             // Gson
             "com.squareup.retrofit2:converter-gson:${Versions.Libraries.retrofit}",
 
+            // Markomilos For Pagination
+            "com.github.markomilos:paginate:${Versions.Libraries.markomilos}",
+
             // TimberKotlin
             "com.github.ajalt:timberkt:${Versions.Libraries.timber}",
 
@@ -119,18 +115,18 @@ object Dependencies {
             "androidx.lifecycle:lifecycle-compiler:${Versions.AndroidX.androidArc}",
 
             // ButterKnife
-            "com.jakewharton:butterknife-compiler:${Versions.Libraries.butterknife}",
-
-            // Glide
-            "com.github.bumptech.glide:compiler:${Versions.Libraries.glide}"
-    )
+            "com.jakewharton:butterknife-compiler:${Versions.Libraries.butterknife}"
+            )
 
     val Kapt = arrayOf(
             // Android Arch Room
             "androidx.room:room-compiler:${Versions.AndroidX.androidArc}",
 
             // Dagger
-            "com.google.dagger:dagger-compiler:${Versions.Google.dagger}"
+            "com.google.dagger:dagger-compiler:${Versions.Google.dagger}",
+
+            // Glide
+            "com.github.bumptech.glide:compiler:${Versions.Libraries.glide}"
     )
 
 }

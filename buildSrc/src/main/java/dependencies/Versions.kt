@@ -65,6 +65,9 @@ object Versions {
         // Gson
         const val gson = "2.8.2"
 
+        // Markomilos For Pagination
+        const val markomilos = "0.5.1"
+
         // Timber
         const val timber = "1.5.1"
 
@@ -75,7 +78,7 @@ object Versions {
         const val leakCanary = "1.5.4"
 
         // Glide for Image Handling
-        const val glide = "4.7.1"
+        const val glide = "4.8.0"
 
         // Anko
         const val ankoVersion = "0.10.7"

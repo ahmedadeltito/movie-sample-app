@@ -1,13 +1,10 @@
 package com.ahmedadelsaid.moviesampleapp.data.repository
 
-import androidx.paging.PagedList
-import androidx.paging.RxPagedListBuilder
+import android.util.Log
 import com.ahmedadelsaid.moviesampleapp.data.mapper.MovieMapper
 import com.ahmedadelsaid.moviesampleapp.data.repository.local.MovieDao
-import com.ahmedadelsaid.moviesampleapp.data.repository.pagelistboundaries.MovieListBoundaryCallback
 import com.ahmedadelsaid.moviesampleapp.data.repository.remote.MovieAPI
 import com.ahmedadelsaid.moviesampleapp.domain.model.Movie
-import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -16,40 +13,31 @@ import javax.inject.Inject
 class MoviesRepo
 @Inject
 constructor(private val local: MovieDao,
-            private val remote: MovieAPI,
-            private val listCallback: MovieListBoundaryCallback) {
-
-    private val mConfig = PagedList.Config.Builder()
-            .setEnablePlaceholders(false)
-            .setPrefetchDistance(5)
-            .setPageSize(20)
-            .build()
+            private val remote: MovieAPI) {
 
     private val mapper = MovieMapper()
 
-    fun getMovies(): Flowable<PagedList<Movie>> {
-        return RxPagedListBuilder(local.getMovies.map { mapper.fromDb(it) }, mConfig)
-                .setBoundaryCallback(listCallback)
-                .buildFlowable(BackpressureStrategy.LATEST)
-    }
+    fun getMovies(pageNumber: Int): Flowable<List<Movie>?> {
 
-//    fun getMovie(id: Int): Flowable<Movie> {
-//        Single.concat(
-//                local.getMovie(id),
-//                remote.getMovie(id).doOnSuccess { movie ->
-//                    local.insertMovie(movie)
-//                })
-//        return Single.concat(local.getMovie(id),
-//                remote.getMovie(id).doOnSuccess(
-//                        {
-//                            data -> local.insertMovie(data)
-//                        }
-//                ))
-//                .onErrorResumeNext(Function<Throwable, Publisher<out Movie>>
-//                {
-//                    Flowable.error(it)
-//                } as io.reactivex.functions.Function<Throwable, Publisher<out Movie>>)
-//    }
+        val localMovie =
+                local.getMovies.map { movieEntityList ->
+                    movieEntityList.map { movieEntity ->
+                        mapper.fromDb(movieEntity)
+                    }
+                }
+
+        val remoteMovie = remote.getMovies(pageNumber).map { movieResponse ->
+            movieResponse.results?.map { movieEntity ->
+                if (pageNumber == 1)
+                    local.insertMovie(movieEntity)
+                mapper.fromDb(movieEntity)
+            }
+        }
+
+        if (pageNumber == 1)
+            return Single.concat<List<Movie>>(localMovie, remoteMovie)
+        return remoteMovie.toFlowable()
+    }
 
     fun clearDatabase(): Single<Int> {
         return Observable.fromCallable { local.deleteAll() }.firstOrError()

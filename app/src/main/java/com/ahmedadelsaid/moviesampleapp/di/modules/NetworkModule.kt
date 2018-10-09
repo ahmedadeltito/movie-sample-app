@@ -25,8 +25,8 @@ class NetworkModule {
 
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
-        httpClient.addInterceptor(logging)
 
+        httpClient.addInterceptor(logging)
         httpClient.addInterceptor(keyInterceptor)
 
         return httpClient.build()

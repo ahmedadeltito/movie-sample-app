@@ -9,9 +9,9 @@ import retrofit2.http.Query
 interface MovieAPI {
 
     @GET("/3/movie/top_rated")
-    abstract fun getMovies(@Query("page") pageNumber: Int): Flowable<MovieResponse>
+    abstract fun getMovies(@Query("page") pageNumber: Int): Single<MovieResponse>
 
     @GET("/3/movie/top_rated")
-    abstract fun getMovie(@Query("page") pageNumber: Int): Single<MovieResponse>
+    abstract fun getMovie(@Query("id") movieId: Int): Single<MovieResponse>
 
 }

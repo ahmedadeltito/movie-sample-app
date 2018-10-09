@@ -14,8 +14,10 @@ abstract class DatabaseManager : RoomDatabase() {
     companion object {
 
         fun getInstance(context: Context): DatabaseManager {
-            return Room.databaseBuilder(context.applicationContext, DatabaseManager::class.java, "movie.db")
+            return Room.databaseBuilder(context.applicationContext,
+                    DatabaseManager::class.java, "movie.db")
                     .build()
         }
+
     }
 }

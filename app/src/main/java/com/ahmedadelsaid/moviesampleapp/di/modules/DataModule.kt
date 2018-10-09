@@ -1,19 +1,14 @@
 package com.ahmedadelsaid.moviesampleapp.di.modules
 
 import android.content.Context
-import androidx.room.Room
-import com.ahmedadelsaid.moviesampleapp.data.mapper.MovieMapper
 import com.ahmedadelsaid.moviesampleapp.data.repository.MoviesRepo
 import com.ahmedadelsaid.moviesampleapp.data.repository.local.DatabaseManager
 import com.ahmedadelsaid.moviesampleapp.data.repository.local.MovieDao
-import com.ahmedadelsaid.moviesampleapp.data.repository.pagelistboundaries.MovieListBoundaryCallback
 import com.ahmedadelsaid.moviesampleapp.data.repository.remote.MovieAPI
-import com.ahmedadelsaid.moviesampleapp.di.scopes.MovieApplicationScope
 import com.ahmedadelsaid.moviesampleapp.domain.usecase.MovieUseCase
 import dagger.Module
 import dagger.Provides
 import javax.inject.Inject
-import javax.inject.Singleton
 
 @Module
 class DataModule
@@ -28,12 +23,8 @@ constructor(context: Context) {
             = databaseManager.movieDao()
 
     @Provides
-    internal fun provideMovieListBoundaryCallback(local: MovieDao, remote: MovieAPI)
-            = MovieListBoundaryCallback(local, remote)
-
-    @Provides
-    internal fun provideRepository(local: MovieDao, remote: MovieAPI, listCallback: MovieListBoundaryCallback)
-            = MoviesRepo(local, remote, listCallback)
+    internal fun provideRepository(local: MovieDao, remote: MovieAPI)
+            = MoviesRepo(local, remote)
 
     @Provides
     internal fun providesMovieUseCase(moviesRepo: MoviesRepo)

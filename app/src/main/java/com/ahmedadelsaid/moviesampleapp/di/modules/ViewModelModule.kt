@@ -16,4 +16,5 @@ internal abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MovieListViewModel::class)
     abstract fun bindMovieListViewModel(viewModel: MovieListViewModel): ViewModel
+
 }

@@ -3,7 +3,6 @@ package com.ahmedadelsaid.moviesampleapp.data.repository.remote
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
-import javax.inject.Inject
 
 class EmbedAPIKeyInterceptor
 constructor(internal var settings: SettingsAPI) : Interceptor {
@@ -17,7 +16,6 @@ constructor(internal var settings: SettingsAPI) : Interceptor {
                 .addQueryParameter("api_key", settings.apiKey)
                 .build()
 
-        // Request customization: add request headers
         val requestBuilder = original.newBuilder().url(url)
 
         val request = requestBuilder.build()
