@@ -1,33 +1,84 @@
+import dependencies.Versions
+import dependencies.Dependencies
+
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+
+    compileSdkVersion Versions.SupportAndroidLibs.compileSdk
+
     defaultConfig {
         applicationId "com.ahmedadelsaid.moviesampleapp"
-        minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+
+        minSdkVersion Versions.SupportAndroidLibs.minSdk
+        targetSdkVersion Versions.SupportAndroidLibs.targetSdk
+
+        versionCode Versions.versionCode
+        versionName Versions.versionName
+
+        buildConfigField "String", 'API_KEY', API_KEY
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "version"
+    productFlavors {
+        production {
+            dimension "version"
+            applicationIdSuffix ".production"
+            versionNameSuffix "-production"
+            buildConfigField "String", 'BASE_URL', BASE_PRODUCTION_URL
+        }
+        development {
+            dimension "version"
+            applicationIdSuffix ".development"
+            versionNameSuffix "-development"
+            buildConfigField "String", 'BASE_URL', BASE_DEVELOPMENT_URL
+        }
+    }
+
+    sourceSets {
+        main {
+            res.srcDirs = [
+                    'src/main/res',
+                    'src/main/res-screens/movielist',
+                    'src/main/res-screens/moviedetails'
+            ]
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+androidExtensions {
+    experimental = true
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.0-beta01'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-beta01'
+
+    implementation Dependencies.Kotlin
+    implementation Dependencies.AndroidXLibs
+    implementation Dependencies.Google
+    implementation Dependencies.Libraries
+
+    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    kapt Dependencies.Kapt
+    annotationProcessor Dependencies.Annotations
+
+    implementation Dependencies.Testing
 }
