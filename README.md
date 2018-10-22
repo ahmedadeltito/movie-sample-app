@@ -77,9 +77,7 @@ The main players in the **MVVM** pattern are:
 -   The  **ViewModel** exposes streams of data relevant to the View. It is a model for the View of the app: an abstraction of the View. The ViewModel retrieves the necessary data from the DataModel, applies the UI logic and then exposes relevant data for the View to consume.
 -   The  **DataModel**  abstracts the data source. The ViewModel works with the DataModel to get and save the data. It exposes data easily consumable through event streams  like  **RxJava’s Observables** or **LiveData** as we used here in our app. It composes data from multiple sources, like the network layer, database or shared preferences and exposes easily consumable data to whomever needs it. The DataModels hold the entire business logic.
 
-## TO DO :
-
-These things I am having a good background on them but this week was very busy to me that's why I didn't implement them but I know how to implement them and I am going to make them in this repo to learn more from the project :)
+## TO DO
 
 ### CI and CD
 
@@ -100,7 +98,7 @@ Pros of CI and CD :
  - Build automation.
  - Deployment Automation.
 
-So, I am usually using [CircleCi](https://circleci.com/docs/1.0/android/) for Continues Integration and [Fastlane](https://docs.fastlane.tools/getting-started/android/setup/) for Continues Deployment and Delivery.
+So, I am going to use [CircleCi](https://circleci.com/docs/1.0/android/) for Continues Integration and [Fastlane](https://docs.fastlane.tools/getting-started/android/setup/) for Continues Deployment and Delivery.
 
 ### Unit Testing and UI Testing
 
@@ -110,9 +108,7 @@ Usually I am using JUnit, Mockito with Dagger Dependency Injection for writing m
 
 The static code analysis tools are widely used in Java development to improve the codebase and identify potential vulnerabilities along with design flaws. Every tool has its own feature, purpose and strength which helps in increasing the code quality and makes you a better developer.
 
-I am familiar with FindBugs and Detekt.
-
-## Thanks a lot for giving me the opportunity to make this task and hoping to meet your expectations :).
+I am going to use FindBugs and Detekt for static code analysis.
 
 ## Contributing
 
