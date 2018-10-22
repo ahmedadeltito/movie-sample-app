@@ -3,7 +3,7 @@ package dependencies
 /**
  * Created by Ahmed Adel on 06/10/2018.
  *
- * Version that will be used in Dependecies kotlin file.
+ * Version that will be used in Dependencies kotlin file.
  */
 
 @Suppress("unused")
@@ -14,7 +14,7 @@ object Versions {
     const val versionCode = 1
 
     object SupportAndroidLibs {
-        const val servicesPlugin = "3.2.0"
+        const val servicesPlugin = "3.2.1"
         const val compileSdk = 28
         const val minSdk = 21
         const val targetSdk = 28
