@@ -1,10 +1,13 @@
 import dependencies.Versions
 import dependencies.Dependencies
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+apply {
+    plugin("com.android.application")
+    plugin("kotlin-android")
+    plugin("kotlin-android-extensions")
+    plugin("kotlin-kapt")
+    plugin("io.gitlab.arturbosch.detekt")
+}
 
 android {
 
@@ -67,6 +70,30 @@ androidExtensions {
     experimental = true
 }
 
+detekt {
+    toolVersion = "${Versions.detekt}"          // Version of the Detekt CLI that will be used. When unspecified the latest detekt version found will be used. Override to stay on the same version.
+    input = files(                              // The directories where detekt looks for input files. Defaults to `files("src/main/java", "src/main/kotlin")`.
+            "src/main/java",
+            "gensrc/main/java"
+    )
+    parallel = false                                    // Runs detekt in parallel. Can lead to speedups in larger projects. `false` by default.
+    config = files("detekt/default-detekt-config.yml")  // Define the detekt configuration(s) you want to use. Defaults to the default detekt configuration.
+    baseline = file("detekt/baseline.xml")              // Specifying a baseline file. All findings stored in this file in subsequent runs of detekt.
+    filters = ''                                        // Regular expression of paths that should be excluded separated by `;` or `,`.
+    disableDefaultRuleSets = false                      // Disables all default detekt rulesets and will only run detekt with custom rules defined in `plugins`. `false` by default.
+    debug = false                                       // Adds debug output during task execution. `false` by default.
+    reports {
+        xml {
+            enabled = true                                  // Enable/Disable XML report (default: true)
+            destination = file("detekt/reports/detekt.xml")  // Path where XML report will be stored (default: `build/reports/detekt/detekt.xml`)
+        }
+        html {
+            enabled = true                                  // Enable/Disable HTML report (default: true)
+            destination = file("detekt/reports/detekt.html") // Path where HTML report will be stored (default: `build/reports/detekt/detekt.html`)
+        }
+    }
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -75,10 +102,8 @@ dependencies {
     implementation Dependencies.Google
     implementation Dependencies.Libraries
 
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     kapt Dependencies.Kapt
-    annotationProcessor Dependencies.Annotations
+    kapt Dependencies.Annotations
 
     implementation Dependencies.Testing
 }

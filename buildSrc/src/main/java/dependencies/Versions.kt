@@ -13,6 +13,8 @@ object Versions {
     const val versionName = "1.0"
     const val versionCode = 1
 
+    const val detekt = "1.0.0.RC9.2"
+
     object SupportAndroidLibs {
         const val servicesPlugin = "3.2.1"
         const val compileSdk = 28
@@ -24,7 +26,7 @@ object Versions {
         const val main = "1.0.0"
         const val material = "1.0.0-rc01"
         const val multiDex = "2.0.0"
-        const val constraintLayout = "1.1.2"
+        const val constraintLayout = "1.1.3"
         const val androidArc = "2.0.0-rc01"
     }
 

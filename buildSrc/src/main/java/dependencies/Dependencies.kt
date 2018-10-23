@@ -35,7 +35,6 @@ object Dependencies {
             "com.google.android.material:material:${Versions.AndroidX.material}",
 
             // Android Arch Lifecycle
-            "androidx.lifecycle:lifecycle-compiler:${Versions.AndroidX.androidArc}",
             "androidx.lifecycle:lifecycle-extensions:${Versions.AndroidX.androidArc}",
             "androidx.lifecycle:lifecycle-reactivestreams:${Versions.AndroidX.androidArc}",
 

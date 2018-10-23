@@ -9,6 +9,7 @@ buildscript {
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
         maven { url "http://dl.bintray.com/jetbrains/spek" }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
 
     dependencies {
@@ -20,6 +21,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin.std}"
         classpath "org.jetbrains.kotlin:kotlin-android-extensions:${Versions.Kotlin.std}"
         classpath "org.jetbrains.kotlin:kotlin-annotation-processing-gradle:${Versions.Kotlin.std}"
+        classpath "gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.detekt}"
 
         // Junit
         classpath "org.junit.platform:junit-platform-gradle-plugin:${Versions.Testing.junitPlatform}"
@@ -32,6 +34,7 @@ allprojects {
         jcenter()
         maven { url 'https://maven.fabric.io/public' }
         maven { url "http://dl.bintray.com/jetbrains/spek" }
+        maven { url "https://plugins.gradle.org/m2/" }
     }
 }
 

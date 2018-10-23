@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <Blacklist timestamp="1540253333359"></Blacklist>
+  <Whitelist timestamp="1540253333359">
+    <ID>ComplexMethod:DividerItemDecoration.kt$DividerItemDecoration$override fun onDrawOver(c: Canvas, parent: RecyclerView, state: RecyclerView.State)</ID>
+    <ID>LongParameterList:DateExts.kt$(year: Int = -1, month: Int = -1, day: Int = -1, hour: Int = -1, minute: Int = -1, second: Int = -1)</ID>
+    <ID>LongParameterList:Dates.kt$Dates$(year: Int = -1, month: Int = -1, day: Int = -1, hour: Int = -1, minute: Int = -1, second: Int = -1)</ID>
+    <ID>MagicNumber:DensityUtils.kt$DensityUtils$160f</ID>
+    <ID>MagicNumber:EndlessRecyclerViewScrollListener.kt$EndlessRecyclerViewScrollListener$5</ID>
+    <ID>MagicNumber:MainActivity.kt$MainActivity$3</ID>
+    <ID>MagicNumber:SettingsAPI.kt$SettingsAPI$30000</ID>
+    <ID>MaxLineLength:BaseApplication.kt$com.ahmedadelsaid.moviesampleapp.base.BaseApplication.kt</ID>
+    <ID>MaxLineLength:DateExts.kt$fun Date.with(year: Int = -1, month: Int = -1, day: Int = -1, hour: Int = -1, minute: Int = -1, second: Int = -1): Date</ID>
+    <ID>MaxLineLength:EmbedAPIKeyInterceptor.kt$com.ahmedadelsaid.moviesampleapp.data.repository.remote.EmbedAPIKeyInterceptor.kt</ID>
+    <ID>MaxLineLength:EndlessRecyclerViewScrollListener.kt$EndlessRecyclerViewScrollListener$val lastVisibleItemPositions = (mLayoutManager as StaggeredGridLayoutManager).findLastVisibleItemPositions(null)</ID>
+    <ID>MaxLineLength:EndlessRecyclerViewScrollListener.kt$com.ahmedadelsaid.moviesampleapp.utils.EndlessRecyclerViewScrollListener.kt</ID>
+    <ID>MaxLineLength:MovieAdapter.kt$MovieAdapter$override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)</ID>
+    <ID>MaxLineLength:MovieListViewModel.kt$MovieListViewModel$fun filterMovies(pageNumber: Int, startDate: Date, endDate: Date)</ID>
+    <ID>MaxLineLength:MovieMapper.kt$com.ahmedadelsaid.moviesampleapp.data.mapper.MovieMapper.kt</ID>
+    <ID>MaxLineLength:MovieResponseResult.kt$com.ahmedadelsaid.moviesampleapp.domain.responseresult.MovieResponseResult.kt</ID>
+    <ID>MaxLineLength:MovieUseCase.kt$MovieUseCase${ filterResponseResult.postValue(MoviesResponseResult(NetworkState.error("data is finished!"))) }</ID>
+    <ID>MaxLineLength:MovieUseCase.kt$MovieUseCase${ movieResponseResult.postValue(MovieResponseResult(NetworkState.error("data is finished!"))) }</ID>
+    <ID>MaxLineLength:MovieUseCase.kt$MovieUseCase${ moviesResponseResult.postValue(MoviesResponseResult(NetworkState.error("data is finished!"))) }</ID>
+    <ID>MaxLineLength:MovieUseCase.kt$com.ahmedadelsaid.moviesampleapp.domain.usecase.MovieUseCase.kt</ID>
+    <ID>MaxLineLength:MovieViewHolder.kt$com.ahmedadelsaid.moviesampleapp.presentation.movielist.adapter.MovieViewHolder.kt</ID>
+    <ID>MaxLineLength:MoviesResponseResult.kt$com.ahmedadelsaid.moviesampleapp.domain.responseresult.MoviesResponseResult.kt</ID>
+    <ID>NewLineAtEndOfFile:AppGlideModule.kt$com.ahmedadelsaid.moviesampleapp.utils.AppGlideModule.kt</ID>
+    <ID>NewLineAtEndOfFile:ApplicationComponent.kt$com.ahmedadelsaid.moviesampleapp.di.components.ApplicationComponent.kt</ID>
+    <ID>NewLineAtEndOfFile:ApplicationModule.kt$com.ahmedadelsaid.moviesampleapp.di.modules.ApplicationModule.kt</ID>
+    <ID>NewLineAtEndOfFile:BaseActivity.kt$com.ahmedadelsaid.moviesampleapp.presentation.BaseActivity.kt</ID>
+    <ID>NewLineAtEndOfFile:BaseApplication.kt$com.ahmedadelsaid.moviesampleapp.base.BaseApplication.kt</ID>
+    <ID>NewLineAtEndOfFile:CommonUtils.kt$com.ahmedadelsaid.moviesampleapp.utils.CommonUtils.kt</ID>
+    <ID>NewLineAtEndOfFile:DataModule.kt$com.ahmedadelsaid.moviesampleapp.di.modules.DataModule.kt</ID>
+    <ID>NewLineAtEndOfFile:DatabaseManager.kt$com.ahmedadelsaid.moviesampleapp.data.repository.local.DatabaseManager.kt</ID>
+    <ID>NewLineAtEndOfFile:DateExts.kt$com.ahmedadelsaid.moviesampleapp.utils.date.DateExts.kt</ID>
+    <ID>NewLineAtEndOfFile:Dates.kt$com.ahmedadelsaid.moviesampleapp.utils.date.Dates.kt</ID>
+    <ID>NewLineAtEndOfFile:DensityUtils.kt$com.ahmedadelsaid.moviesampleapp.utils.DensityUtils.kt</ID>
+    <ID>NewLineAtEndOfFile:DividerItemDecoration.kt$com.ahmedadelsaid.moviesampleapp.utils.DividerItemDecoration.kt</ID>
+    <ID>NewLineAtEndOfFile:Duration.kt$com.ahmedadelsaid.moviesampleapp.utils.date.Duration.kt</ID>
+    <ID>NewLineAtEndOfFile:EmbedAPIKeyInterceptor.kt$com.ahmedadelsaid.moviesampleapp.data.repository.remote.EmbedAPIKeyInterceptor.kt</ID>
+    <ID>NewLineAtEndOfFile:EndlessRecyclerViewScrollListener.kt$com.ahmedadelsaid.moviesampleapp.utils.EndlessRecyclerViewScrollListener.kt</ID>
+    <ID>NewLineAtEndOfFile:IntExts.kt$com.ahmedadelsaid.moviesampleapp.utils.date.IntExts.kt</ID>
+    <ID>NewLineAtEndOfFile:Movie.kt$com.ahmedadelsaid.moviesampleapp.domain.model.Movie.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieAPI.kt$com.ahmedadelsaid.moviesampleapp.data.repository.remote.MovieAPI.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieAdapter.kt$com.ahmedadelsaid.moviesampleapp.presentation.movielist.adapter.MovieAdapter.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieApplicationScope.kt$com.ahmedadelsaid.moviesampleapp.di.scopes.MovieApplicationScope.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDao.kt$com.ahmedadelsaid.moviesampleapp.data.repository.local.MovieDao.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieDetailsViewModel.kt$com.ahmedadelsaid.moviesampleapp.presentation.moviedetails.MovieDetailsViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieEntity.kt$com.ahmedadelsaid.moviesampleapp.data.model.MovieEntity.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieListViewModel.kt$com.ahmedadelsaid.moviesampleapp.presentation.movielist.MovieListViewModel.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieMapper.kt$com.ahmedadelsaid.moviesampleapp.data.mapper.MovieMapper.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieResponse.kt$com.ahmedadelsaid.moviesampleapp.data.response.MovieResponse.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieResponseResult.kt$com.ahmedadelsaid.moviesampleapp.domain.responseresult.MovieResponseResult.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieUseCase.kt$com.ahmedadelsaid.moviesampleapp.domain.usecase.MovieUseCase.kt</ID>
+    <ID>NewLineAtEndOfFile:MovieViewHolder.kt$com.ahmedadelsaid.moviesampleapp.presentation.movielist.adapter.MovieViewHolder.kt</ID>
+    <ID>NewLineAtEndOfFile:MoviesRepo.kt$com.ahmedadelsaid.moviesampleapp.data.repository.MoviesRepo.kt</ID>
+    <ID>NewLineAtEndOfFile:MoviesResponseResult.kt$com.ahmedadelsaid.moviesampleapp.domain.responseresult.MoviesResponseResult.kt</ID>
+    <ID>NewLineAtEndOfFile:NetworkModule.kt$com.ahmedadelsaid.moviesampleapp.di.modules.NetworkModule.kt</ID>
+    <ID>NewLineAtEndOfFile:NetworkState.kt$com.ahmedadelsaid.moviesampleapp.domain.NetworkState.kt</ID>
+    <ID>NewLineAtEndOfFile:SafeLet.kt$com.ahmedadelsaid.moviesampleapp.utils.SafeLet.kt</ID>
+    <ID>NewLineAtEndOfFile:SettingsAPI.kt$com.ahmedadelsaid.moviesampleapp.data.repository.remote.SettingsAPI.kt</ID>
+    <ID>NewLineAtEndOfFile:StringExts.kt$com.ahmedadelsaid.moviesampleapp.utils.date.StringExts.kt</ID>
+    <ID>NewLineAtEndOfFile:ViewModelKey.kt$com.ahmedadelsaid.moviesampleapp.di.scopes.ViewModelKey.kt</ID>
+    <ID>NewLineAtEndOfFile:ViewModelModule.kt$com.ahmedadelsaid.moviesampleapp.di.modules.ViewModelModule.kt</ID>
+    <ID>TooGenericExceptionCaught:ViewModelFactory.kt$ViewModelFactory$e: Exception</ID>
+    <ID>TooGenericExceptionThrown:ViewModelFactory.kt$ViewModelFactory$throw RuntimeException(e)</ID>
+    <ID>TooManyFunctions:DateExts.kt$com.ahmedadelsaid.moviesampleapp.utils.date.DateExts.kt</ID>
+    <ID>TooManyFunctions:MovieListActivity.kt$MovieListActivity : BaseActivityOnDateSetListener</ID>
+    <ID>WildcardImport:MovieDao.kt$import androidx.room.*</ID>
+  </Whitelist>
+</SmellBaseline>
